@@ -6,10 +6,7 @@ const { InjectManifest } = require("workbox-webpack-plugin");
 module.exports = () => {
   return {
     mode: "development",
-    entry: {
-      main: "./src/js/index.js",
-      install: "./src/js/install.js",
-    },
+    entry: "./src/js/index.js",
     output: {
       filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist"),
@@ -21,17 +18,19 @@ module.exports = () => {
       }),
       new WebpackPwaManifest({
         name: "Progressive Web Applications Text Editor",
-        short_name: "PWA_TE",
+        short_name: "J. A. T. E.",
         description: "Text Editor Application",
         fingerprints: false,
         inject: true,
         background_color: "#02f6fa",
         theme_color: "#02f6fa",
         start_url: "./",
+        publicPath: "./",
         icons: [
           {
-            src: "./src/images/logo.png",
+            src: "src/images/logo.png",
             sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join("assets", "icons"),
           },
         ],
       }),
