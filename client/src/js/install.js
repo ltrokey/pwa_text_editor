@@ -21,7 +21,7 @@ installBtn.addEventListener("click", async () => {
     installBtn.classList.toggle("visible", false);
 
     console.log("Installation prompt shown");
-  } catch {
+  } catch (error) {
     console.error("Error during PWA installation:", error);
   }
 });

@@ -1,5 +1,5 @@
 import { offlineFallback, warmStrategyCache } from "workbox-recipes";
-import { CacheFirst } from "workbox-strategies";
+import { CacheFirst, StaleWhileRevalidate } from "workbox-strategies";
 import { registerRoute } from "workbox-routing";
 import { CacheableResponsePlugin } from "workbox-cacheable-response";
 import { ExpirationPlugin } from "workbox-expiration";
@@ -28,15 +28,8 @@ registerRoute(({ request }) => request.mode === "navigate", pageCache);
 
 // Cache styles, scripts, and images with the CacheFirst strategy
 registerRoute(
-  ({ request }) => {
-    console.log(request);
-    return (
-      request.destination === "style" ||
-      request.destination === "script" ||
-      request.destination === "worker"
-    );
-  },
-  new CacheFirst({
+  ({ request }) => ["style", "script", "worker"].includes(request.destination),
+  new StaleWhileRevalidate({
     cacheName: "static-assets-cache",
     plugins: [
       new CacheableResponsePlugin({
