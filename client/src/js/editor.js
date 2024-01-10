@@ -20,14 +20,10 @@ export default class {
       tabSize: 2,
     });
 
-    getDb()
-      .then((data) => {
-        console.info("Loaded data from IndexedDB, injecting into editor");
-        this.editor.setValue(data || localData || header);
-      })
-      .catch((error) => {
-        console.error("Error loading datafrom IndexedDB", error);
-      });
+    getDb().then((data) => {
+      console.info("Loaded data from IndexedDB, injecting into editor");
+      this.editor.setValue(data || localData || header);
+    });
 
     this.editor.on("change", () => {
       localStorage.setItem("content", this.editor.getValue());
