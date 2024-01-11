@@ -2,7 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-[Link to live deploy]()
+[Link to live deploy](https://jate-text-editor-m7l3.onrender.com/)
 
 ## Description
 
