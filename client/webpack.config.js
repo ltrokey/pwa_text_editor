@@ -6,7 +6,7 @@ const { InjectManifest } = require("workbox-webpack-plugin");
 module.exports = () => {
   return {
     mode: "development",
-    entry: "./src/js/index.js",
+    entry: { main: "./src/js/index.js", install: "./src/js/install.js" },
     output: {
       filename: "[name].bundle.js",
       path: path.resolve(__dirname, "dist"),
@@ -28,11 +28,11 @@ module.exports = () => {
         inject: true,
         background_color: "#02f6fa",
         theme_color: "#02f6fa",
-        start_url: "./",
-        publicPath: "./",
+        start_url: "/",
+        publicPath: "/",
         icons: [
           {
-            src: "src/images/logo.png",
+            src: path.resolve("src/images/logo.png"),
             sizes: [96, 128, 192, 256, 384, 512],
             destination: path.join("assets", "icons"),
           },

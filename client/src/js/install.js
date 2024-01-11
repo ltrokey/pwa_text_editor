@@ -7,23 +7,19 @@ window.addEventListener("beforeinstallprompt", (event) => {
 });
 
 installBtn.addEventListener("click", async () => {
-  try {
-    const promptEvent = window.deferredPrompt;
+  const promptEvent = window.deferredPrompt;
 
-    if (!promptEvent) {
-      return;
-    }
-
-    await promptEvent.prompt();
-
-    window.deferredPrompt = null;
-
-    installBtn.classList.toggle("visible", false);
-
-    console.log("Installation prompt shown");
-  } catch (error) {
-    console.error("Error during PWA installation:", error);
+  if (!promptEvent) {
+    return;
   }
+
+  promptEvent.prompt();
+
+  window.deferredPrompt = null;
+
+  installBtn.classList.toggle("visible", false);
+
+  console.log("Installation prompt shown");
 });
 
 window.addEventListener("appinstalled", (event) => {
